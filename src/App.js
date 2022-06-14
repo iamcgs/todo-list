@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { CrearTareaBoton } from './components/CrearTareaBoton';
+import { TareasBuscador } from './components/TareasBuscador';
+import { TareasContador } from './components/TareasContador';
+import { TareasItem } from './components/TareasItem';
+import { TareasLista } from './components/TareasLista';
 
-function App() {
+const tareas = [
+  { text: 'Tarea 1', completado: true },
+  { text: 'Tarea 2', completado: false },
+  { text: 'Tarea 3', completado: true },
+  { text: 'Tarea 4', completado: false },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 className="p-8 text-center text-3xl font-bold text-darkBlue">
+        Todo List
+      </h1>
+      <main className="mx-auto w-3/4 md:w-[600px]">
+        <TareasContador />
+        <TareasBuscador />
+        <TareasLista>
+          {tareas.map((tareas) => (
+            <TareasItem
+              key={tareas.text}
+              tarea={tareas.text}
+              completado={tareas.completado}
+            />
+          ))}
+        </TareasLista>
+        <CrearTareaBoton />
+      </main>
+    </>
   );
-}
+};
 
-export default App;
+export { App };
